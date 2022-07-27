@@ -16,9 +16,11 @@ class Character(Base):
     name = Column(String(20), unique = True, nullable=False)
     description = Column(String(200))
     birth = Column(DateTime, nullable=False)
-    eye_color = Column(String(10))
-    skin_color = Column(String(10))
+    eye_color = Column(String(15))
+    skin_color = Column(String(15))
+    hair_color = Column(String(15))
     height = Column(Float, nullable = False)
+    natal_planet = Column(Integer, ForeignKey("planet.id"), nullable = False )
     
     
 
@@ -32,6 +34,7 @@ class Planet(Base):
     name = Column(String(20), unique = True, nullable=False)
     description = Column(String(200))
     population = Column(Integer, nullable = False)
+    gravity = Column(Integer, nullable = False)
     climate = Column(Integer, nullable = False)
     orbital_period = Column(Integer)
     rotation_period = Column(Integer)
@@ -49,6 +52,7 @@ class Vehicle(Base):
     name = Column(String(20), unique = True, nullable=False)
     model = Column(String(200))
     manufacturer = Column(String(200))
+    lenghth = Column(Integer)
     max_atmosphering_speed = Column(Float)
     crew = Column(Float)
     passengers = Column(Float)
@@ -62,15 +66,15 @@ class Favorite_Character(Base):
 
     id = Column(Integer, primary_key = True)
     character_id = Column(Integer, ForeignKey("character.id"), nullable = False)
-    user_id = Column(Integer, ForeignKey("user.id"), nullable = False)
+    user_id = Column(Integer, ForeignKey("username.id"), nullable = False)
 
-class Favorite_Ship(Base):
+class Favorite_Vehicle(Base):
 
-    __tablename__ = "favorite_ship"
+    __tablename__ = "favorite_vehicle"
 
     id = Column(Integer, primary_key = True)
-    ship_id = Column(Integer, ForeignKey("ship.id"), nullable = False)
-    user_id = Column(Integer, ForeignKey("user.id"), nullable = False)
+    ship_id = Column(Integer, ForeignKey("vehicle.id"), nullable = False)
+    user_id = Column(Integer, ForeignKey("username.id"), nullable = False)
 
 class Favorite_Planet(Base):
 
@@ -78,15 +82,15 @@ class Favorite_Planet(Base):
 
     id = Column(Integer, primary_key = True)
     planet_id = Column(Integer, ForeignKey("planet.id"), nullable = False)
-    user_id = Column(Integer, ForeignKey("user.id"), nullable = False)
+    user_id = Column(Integer, ForeignKey("username.id"), nullable = False)
 
 
-class User(Base):
+class Username(Base):
 
-    __tablename__ = "user"
+    __tablename__ = "username"
 
     id = Column(Integer, primary_key = True)
-    name = Column(String(20), unique = True, nullable=False)
+    username = Column(String(20), unique = True, nullable=False)
      
 
 
