@@ -14,7 +14,6 @@ class Character(Base):
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     name = Column(String(20), unique = True, nullable=False)
-    description = Column(String(200))
     birth = Column(DateTime, nullable=False)
     eye_color = Column(String(15))
     skin_color = Column(String(15))
@@ -32,7 +31,6 @@ class Planet(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(20), unique = True, nullable=False)
-    description = Column(String(200))
     population = Column(Integer, nullable = False)
     gravity = Column(Integer, nullable = False)
     climate = Column(Integer, nullable = False)
