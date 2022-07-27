@@ -73,7 +73,7 @@ class Favorite_Vehicle(Base):
     __tablename__ = "favorite_vehicle"
 
     id = Column(Integer, primary_key = True)
-    ship_id = Column(Integer, ForeignKey("vehicle.id"), nullable = False)
+    vehicle_id = Column(Integer, ForeignKey("vehicle.id"), nullable = False)
     user_id = Column(Integer, ForeignKey("username.id"), nullable = False)
 
 class Favorite_Planet(Base):
